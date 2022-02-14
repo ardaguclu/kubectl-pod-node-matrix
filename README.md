@@ -1,5 +1,7 @@
 # kubectl-pod-node-matrix
 
+WORK IN PROGRESS!!
+
 This plugin shows pod x node matrix with suitable colors to mitigate troubleshooting effort.
 
 [![GoDoc](https://godoc.org/github.com/ardaguclu/kubectl-pod-node-matrix?status.svg)](https://godoc.org/github.com/ardaguclu/kubectl-pod-node-matrix)
