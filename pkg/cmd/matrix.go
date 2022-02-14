@@ -30,7 +30,8 @@ import (
 	"github.com/spf13/cobra"
 	"k8s.io/cli-runtime/pkg/genericclioptions"
 	"k8s.io/client-go/kubernetes"
-	_ "k8s.io/client-go/plugin/pkg/client/auth"
+
+	_ "k8s.io/client-go/plugin/pkg/client/auth" // combined authprovider import
 )
 
 const (
@@ -156,7 +157,7 @@ func (o *PodNodeMatrixOptions) Run() error {
 	}
 
 	if len(pods.Items) == 0 {
-		return errors.New(fmt.Sprintf("no pod is found in namespace %s", o.namespace))
+		return fmt.Errorf("no pod is found in namespace %s", o.namespace)
 	}
 
 	nodes, err := o.kubeClient.CoreV1().Nodes().List(context.TODO(), metav1.ListOptions{})
