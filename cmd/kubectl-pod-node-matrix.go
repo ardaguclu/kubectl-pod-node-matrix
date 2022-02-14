@@ -19,7 +19,7 @@ package main
 import (
 	"os"
 
-	"github.com/ardaguclu/pod-node-matrix/pkg/cmd"
+	"github.com/ardaguclu/kubectl-pod-node-matrix/pkg/cmd"
 	"github.com/spf13/pflag"
 	"k8s.io/cli-runtime/pkg/genericclioptions"
 )

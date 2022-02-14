@@ -1,4 +1,4 @@
-module github.com/ardaguclu/pod-node-matrix
+module github.com/ardaguclu/kubectl-pod-node-matrix
 
 go 1.17
 
