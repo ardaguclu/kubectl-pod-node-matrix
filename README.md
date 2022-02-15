@@ -2,7 +2,7 @@
 
 WORK IN PROGRESS!!
 
-This plugin shows pod x node matrix with suitable colors to mitigate troubleshooting effort.
+This plugin shows pod status x node matrix with suitable colors to mitigate troubleshooting effort.
 
 [![GoDoc](https://godoc.org/github.com/ardaguclu/kubectl-pod-node-matrix?status.svg)](https://godoc.org/github.com/ardaguclu/kubectl-pod-node-matrix)
 [![Go Report Card](https://goreportcard.com/badge/github.com/ardaguclu/kubectl-pod-node-matrix)](https://goreportcard.com/report/github.com/ardaguclu/kubectl-pod-node-matrix)
