@@ -46,6 +46,7 @@ const (
 	kubectl pod-node-matrix -A
 
 	# show pods statuses in verbose format
+	# it is suggested only there are few nodes.
 	kubectl pod-node-matrix --verbose
 `
 	longDesc = `
