@@ -7,7 +7,7 @@ spec:
   homepage: https://github.com/ardaguclu/kubectl-pod-node-matrix
   shortDescription: Show pod status x node matrix in table view
   description: |
-    This plugin shows pod status x node matrix with suitable colors to mitigate troubleshooting effort.
+    This plugin shows [pod status x node] matrix with suitable colors to mitigate troubleshooting effort.
   caveats: |
     * Due to terminal width limitation, it does not support huge number of nodes.
   platforms:
