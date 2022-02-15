@@ -23,11 +23,10 @@ import (
 	"os"
 
 	"github.com/olekukonko/tablewriter"
+	"github.com/spf13/cobra"
 
 	v1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-
-	"github.com/spf13/cobra"
 	"k8s.io/cli-runtime/pkg/genericclioptions"
 	"k8s.io/client-go/kubernetes"
 
@@ -47,16 +46,16 @@ const (
 `
 	longDesc = `
 	Shows pods statuses and nodes in table view to
-	make troubleshooting easier.
+	mitigate troubleshooting effort.
 	
 	When there is a problem at pods, detecting whether the problem
 	stems from nodes or deployments is arduous task.
 	
 	pod-node-matrix shows pods and nodes in table view.
 	If one of columns is red, thereby it is reasonable to interfere
-	that that node has a problem. If one of rows is red, hence
-	node might not be the cause and maybe deployment has it's own
-	problem.
+	that node has a problem. If one of rows is red,
+	node might not be the cause instead it is better to check
+	pods, deployments, etc.
 `
 )
 
@@ -144,6 +143,7 @@ func (o *PodNodeMatrixOptions) Validate(args []string) error {
 	return nil
 }
 
+// nodeWrap is Node object with index value in addition to that.
 type nodeWrap struct {
 	v1.Node
 	index int

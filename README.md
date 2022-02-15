@@ -9,15 +9,15 @@ This plugin shows pod x node matrix with suitable colors to mitigate troubleshoo
 
 # Details
 
-Troubleshooting in Kubernetes takes some time and sorting out the real cause sometimes overwhelming. 
+Troubleshooting in Kubernetes takes some time and sorting out the real cause is sometimes overwhelming. 
 Take an example of a couple of pods are not in running state, but the actual cause is node has insufficient
 disk space. To reduce the amount of time being spent to this troubleshooting, `pod-node-matrix` might provide a
 place for "first look at". 
 
-`pod-node-matrix` returns pods x node matrix. This plugin can clearly indicate that if there is a general node problem,
+`pod-node-matrix` shows pods status x node in table view. This plugin can clearly indicate that if there is a general node problem,
 or can strongly suggest that node has no problem and instead deployment, service, etc. of this pod have problem.
 
-Thanks to that, at least assuring that one part is working or not will definitely narrow down the places should be 
+Thanks to that, assuring that one part is working or not will definitely narrow down the places should be 
 checked.
 
 ## Installation
