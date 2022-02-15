@@ -108,7 +108,7 @@ func NewCmdPodNodeMatrix(streams genericclioptions.IOStreams) *cobra.Command {
 		},
 	}
 
-	cmd.Flags().BoolVar(&o.verbose, "verbose", o.verbose, "If present, it shows pods statuses and node names in verbose format instead shortcuts. It is suggested only when you have few nodes.")
+	cmd.Flags().BoolVar(&o.verbose, "verbose", o.verbose, "If present, show pods statuses and node names in verbose format instead shortcuts. It is suggested only when you have few nodes.")
 	cmd.Flags().BoolVarP(&o.allNamespaces, "all-namespaces", "A", o.allNamespaces, "If present, list the requested object(s) across all namespaces. Namespace in current context is ignored even if specified with --namespace.")
 	o.configFlags.AddFlags(cmd.Flags())
 	return cmd
