@@ -5,7 +5,7 @@ WORK IN PROGRESS!!
 This plugin shows pod x node matrix with suitable colors to mitigate troubleshooting effort.
 
 [![GoDoc](https://godoc.org/github.com/ardaguclu/kubectl-pod-node-matrix?status.svg)](https://godoc.org/github.com/ardaguclu/kubectl-pod-node-matrix)
-[![Go Report Card](https://goreportcard.com/badge/ardaguclu/kubectl-pod-node-matrix)](https://goreportcard.com/report/ardaguclu/kubectl-pod-node-matrix)
+[![Go Report Card](https://goreportcard.com/badge/github.com/ardaguclu/kubectl-pod-node-matrix)](https://goreportcard.com/report/github.com/ardaguclu/kubectl-pod-node-matrix)
 
 # Details
 
@@ -27,14 +27,6 @@ Use [krew](https://sigs.k8s.io/krew) plugin manager to install,
 ```shell script
 kubectl krew install pod-node-matrix
 kubectl pod-node-matrix --help
-```
-
-Or manually,
-
-`kubectl-pod-node-matrix` can be installed via:
-
-```shell
-go get github.com/ardaguclu/kubectl-pod-node-matrix/cmd/kubectl-pod-node-matrix
 ```
 
 ## Usage
