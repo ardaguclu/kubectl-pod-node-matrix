@@ -5,7 +5,7 @@ metadata:
 spec:
   version: v0.0.1
   homepage: https://github.com/ardaguclu/kubectl-pod-node-matrix
-  shortDescription: Show pod status x node matrix in table view
+  shortDescription: Show [pod status x node] matrix in table view
   description: |
     This plugin shows [pod status x node] matrix with suitable colors to mitigate troubleshooting effort.
   caveats: |
