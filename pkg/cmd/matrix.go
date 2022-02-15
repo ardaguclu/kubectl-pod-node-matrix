@@ -21,6 +21,7 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"strconv"
 
 	"github.com/olekukonko/tablewriter"
 	"github.com/spf13/cobra"
@@ -43,6 +44,9 @@ const (
 
 	# show pods statuses in all namespaces per each node
 	kubectl pod-node-matrix -A
+
+	# show pods statuses in verbose format
+	kubectl pod-node-matrix --verbose
 `
 	longDesc = `
 	Shows pods statuses and nodes in table view to
@@ -67,6 +71,7 @@ type PodNodeMatrixOptions struct {
 
 	namespace     string
 	allNamespaces bool
+	verbose       bool
 	kubeClient    kubernetes.Interface
 }
 
@@ -103,6 +108,7 @@ func NewCmdPodNodeMatrix(streams genericclioptions.IOStreams) *cobra.Command {
 		},
 	}
 
+	cmd.Flags().BoolVar(&o.verbose, "verbose", o.verbose, "If present, it shows pods statuses and node names in verbose format instead shortcuts. It is suggested only when you have few nodes.")
 	cmd.Flags().BoolVarP(&o.allNamespaces, "all-namespaces", "A", o.allNamespaces, "If present, list the requested object(s) across all namespaces. Namespace in current context is ignored even if specified with --namespace.")
 	o.configFlags.AddFlags(cmd.Flags())
 	return cmd
@@ -190,22 +196,8 @@ func (o *PodNodeMatrixOptions) Run() error {
 
 // Print prints table view with colors to emphasize results
 func (o *PodNodeMatrixOptions) Print(pods []v1.Pod, nm map[string]nodeWrap, nodeNames []string) error {
-	header := []string{"Pods"}
-	header = append(header, nodeNames...)
-
 	table := tablewriter.NewWriter(os.Stdout)
-	table.SetHeader(header)
-	table.SetAutoWrapText(false)
-	table.SetAutoFormatHeaders(true)
-	table.SetHeaderAlignment(tablewriter.ALIGN_LEFT)
 	table.SetAlignment(tablewriter.ALIGN_LEFT)
-	table.SetCenterSeparator("")
-	table.SetColumnSeparator("")
-	table.SetRowSeparator("")
-	table.SetHeaderLine(false)
-	table.SetBorder(false)
-	table.SetTablePadding("\t") // pad with tabs
-	table.SetNoWhiteSpace(true)
 
 	for _, pod := range pods {
 		data := make([]string, len(nm)+1)
@@ -215,14 +207,24 @@ func (o *PodNodeMatrixOptions) Print(pods []v1.Pod, nm map[string]nodeWrap, node
 
 		if val, ok := nm[pod.Spec.NodeName]; ok {
 			data[val.index+1] = string(pod.Status.Phase)
+
 			switch pod.Status.Phase {
 			case v1.PodPending:
+				if !o.verbose {
+					data[val.index+1] = "-"
+				}
 				colors[val.index+1] = tablewriter.Colors{tablewriter.FgYellowColor}
 			case v1.PodRunning:
 				fallthrough
 			case v1.PodSucceeded:
+				if !o.verbose {
+					data[val.index+1] = "✓"
+				}
 				colors[val.index+1] = tablewriter.Colors{tablewriter.FgGreenColor}
 			case v1.PodFailed:
+				if !o.verbose {
+					data[val.index+1] = "x"
+				}
 				colors[val.index+1] = tablewriter.Colors{tablewriter.FgRedColor}
 			}
 		} else {
@@ -232,6 +234,31 @@ func (o *PodNodeMatrixOptions) Print(pods []v1.Pod, nm map[string]nodeWrap, node
 		table.Rich(data, colors)
 	}
 
+	nodeNames, footers := o.getHeadersAndFooters(nodeNames)
+	header := []string{"Pods"}
+	header = append(header, nodeNames...)
+	table.SetHeader(header)
 	table.Render()
+
+	if !o.verbose && footers != nil {
+		nodeMapping := tablewriter.NewWriter(os.Stdout)
+		nodeMapping.SetAlignment(tablewriter.ALIGN_LEFT)
+		nodeMapping.AppendBulk(footers)
+		nodeMapping.Render()
+	}
 	return nil
+}
+
+func (o *PodNodeMatrixOptions) getHeadersAndFooters(nodeNames []string) (headers []string, footers [][]string) {
+	if o.verbose {
+		return nodeNames, nil
+	}
+
+	for i, val := range nodeNames {
+		ind := strconv.Itoa(i)
+		headers = append(headers, ind)
+		footers = append(footers, []string{ind, val})
+	}
+
+	return
 }
