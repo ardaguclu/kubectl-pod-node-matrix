@@ -36,22 +36,22 @@ import (
 
 const (
 	example = `
-	# show pods statuses in default namespace per each node
+	# show [pod x node] matrix in terms of pod statuses in default namespace
 	kubectl pod-node-matrix
 
-	# show pods statuses in given namespace per each node
+	# show [pod x node] matrix in terms of pod statuses in given namespace
 	kubectl pod-node-matrix -n test-namespace
 
-	# show pods statuses in all namespaces per each node
+	show [pod x node] matrix in terms of pod statuses in all namespaces
 	kubectl pod-node-matrix -A
 
-	# show pods statuses in verbose format
+	# show pods statuses and node names in verbose format
 	# it is suggested only there are few nodes.
 	kubectl pod-node-matrix --verbose
 `
 	longDesc = `
-	Shows pods statuses and nodes in table view to
-	mitigate troubleshooting effort.
+	Shows [pod x node] matrix in terms of pod statuses 
+	with suitable colors to mitigate troubleshooting effort.
 	
 	When there is a problem at pods, detecting whether the problem
 	stems from nodes or deployments is arduous task.
@@ -90,7 +90,7 @@ func NewCmdPodNodeMatrix(streams genericclioptions.IOStreams) *cobra.Command {
 
 	cmd := &cobra.Command{
 		Use:          "pod-node-matrix [flags]",
-		Short:        "show [pod status x node] matrix in table view",
+		Short:        "show [pod x node] matrix in terms of pod statuses",
 		Long:         longDesc,
 		SilenceUsage: true,
 		Example:      example,

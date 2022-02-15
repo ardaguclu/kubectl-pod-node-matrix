@@ -1,6 +1,6 @@
 # kubectl-pod-node-matrix
 
-This plugin shows [pod status x node] matrix with suitable colors to mitigate troubleshooting effort.
+This plugin shows [pod x node] matrix in terms of pod statuses with suitable colors to mitigate troubleshooting effort.
 
 [![GoDoc](https://godoc.org/github.com/ardaguclu/kubectl-pod-node-matrix?status.svg)](https://godoc.org/github.com/ardaguclu/kubectl-pod-node-matrix)
 [![Go Report Card](https://goreportcard.com/badge/github.com/ardaguclu/kubectl-pod-node-matrix)](https://goreportcard.com/report/github.com/ardaguclu/kubectl-pod-node-matrix)
@@ -73,4 +73,20 @@ $ go run cmd/kubectl-pod-node-matrix.go -n openshift-machine-api
 | 3 | worker-0 |
 | 4 | worker-1 |
 +---+----------+
+```
+
+```shell script
+$ go run cmd/kubectl-pod-node-matrix.go -n kube-system --verbose
++----------------------------------+----------+
+|               PODS               | MINIKUBE |
++----------------------------------+----------+
+| coredns-78fcd69978-krjqf         | Running  |
+| etcd-minikube                    | Running  |
+| kube-apiserver-minikube          | Running  |
+| kube-controller-manager-minikube | Running  |
+| kube-proxy-qcrt6                 | Running  |
+| kube-scheduler-minikube          | Running  |
+| storage-provisioner              | Running  |
++----------------------------------+----------+
+
 ```
