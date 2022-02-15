@@ -3,7 +3,7 @@ kind: Plugin
 metadata:
   name: pod-node-matrix
 spec:
-  version: {{ .TagName }}
+  version: v0.0.1
   homepage: https://github.com/ardaguclu/kubectl-pod-node-matrix
   shortDescription: Show pod status x node matrix in table view
   description: |
@@ -15,23 +15,27 @@ spec:
       matchLabels:
         os: darwin
         arch: amd64
-      {{addURIAndSha "https://github.com/ardaguclu/kubectl-pod-node-matrix/releases/download/{{ .TagName }}/kubectl-pod-node-matrix_{{ .TagName }}_darwin_amd64.tar.gz" .TagName }}
+      uri: https://github.com/ardaguclu/kubectl-pod-node-matrix/releases/download/v0.0.1/kubectl-pod-node-matrix_v0.0.1_darwin_amd64.tar.gz
+      sha256: 0d500bc0055da53797211a8f59b4e96e4fe133ba4a27fb0aeec33f38a410ec6d
       bin: kubectl-pod-node-matrix
     - selector:
         matchLabels:
           os: darwin
           arch: arm64
-      {{addURIAndSha "https://github.com/ardaguclu/kubectl-pod-node-matrix/releases/download/{{ .TagName }}/kubectl-pod-node-matrix_{{ .TagName }}_darwin_arm64.tar.gz" .TagName }}
+      uri: https://github.com/ardaguclu/kubectl-pod-node-matrix/releases/download/v0.0.1/kubectl-pod-node-matrix_v0.0.1_darwin_arm64.tar.gz
+      sha256: f35a0b658dada4dfdd5358d33829db8d9bc753de0be793710b71f5d88ed3fdc3
       bin: kubectl-pod-node-matrix
     - selector:
         matchLabels:
           os: linux
           arch: amd64
-      {{addURIAndSha "https://github.com/ardaguclu/kubectl-pod-node-matrix/releases/download/{{ .TagName }}/kubectl-pod-node-matrix_{{ .TagName }}_linux_amd64.tar.gz" .TagName }}
+      uri: https://github.com/ardaguclu/kubectl-pod-node-matrix/releases/download/v0.0.1/kubectl-pod-node-matrix_v0.0.1_linux_amd64.tar.gz
+      sha256: 0d3076c003fedf55202b3979d0561c571f4af46bb34804dd1487e784b722ab37
       bin: kubectl-pod-node-matrix
     - selector:
         matchLabels:
           os: windows
           arch: amd64
-      {{addURIAndSha "https://github.com/ardaguclu/kubectl-pod-node-matrix/releases/download/{{ .TagName }}/kubectl-pod-node-matrix_{{ .TagName }}_windows_amd64.tar.gz" .TagName }}
+      uri: https://github.com/ardaguclu/kubectl-pod-node-matrix/releases/download/v0.0.1/kubectl-pod-node-matrix_v0.0.1_windows_amd64.tar.gz
+      sha256: f0588728fd50653f71f425f1baf4c5e618b8eb82742613784eb6522e0ef04228
       bin: kubectl-pod-node-matrix.exe
