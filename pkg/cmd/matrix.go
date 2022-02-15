@@ -90,7 +90,7 @@ func NewCmdPodNodeMatrix(streams genericclioptions.IOStreams) *cobra.Command {
 
 	cmd := &cobra.Command{
 		Use:          "pod-node-matrix [flags]",
-		Short:        "view pod status x node matrix in table view",
+		Short:        "show pod status x node matrix in table view",
 		Long:         longDesc,
 		SilenceUsage: true,
 		Example:      example,
