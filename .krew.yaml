@@ -12,6 +12,12 @@ spec:
     * Due to terminal width limitation, it does not support huge number of nodes.
   platforms:
     - selector:
+      matchLabels:
+        os: darwin
+        arch: amd64
+      {{addURIAndSha "https://github.com/ardaguclu/kubectl-pod-node-matrix/releases/download/{{ .TagName }}/kubectl-pod-node-matrix_{{ .TagName }}_darwin_amd64.tar.gz" .TagName }}
+      bin: kubectl-pod-node-matrix
+    - selector:
         matchLabels:
           os: darwin
           arch: arm64
