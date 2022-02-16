@@ -22,7 +22,8 @@ Thanks to that, assuring that one part is working or not will narrow down the pl
 Use [krew](https://sigs.k8s.io/krew) plugin manager to install,
 
 ```shell script
-kubectl krew install pod-node-matrix
+wget https://github.com/ardaguclu/kubectl-pod-node-matrix/blob/main/.krew.yaml
+kubectl krew install pod-node-matrix --manifest=.krew.yaml
 kubectl pod-node-matrix --help
 ```
 
